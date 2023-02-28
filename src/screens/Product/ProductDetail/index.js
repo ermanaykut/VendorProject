@@ -107,7 +107,7 @@ export default function ProductDetail({route}) {
         <Text style={styles.descriptionText}>Price: {item?.price}$</Text>
         <Text style={styles.descriptionText}>
           Rating: {item?.rating}
-          <Icon name="star-half : Ionicons" size={15} color={colors.orange} />
+          <Icon name="star-half : Ionicons" size={15} color={colors.yellow} />
         </Text>
         <Text style={styles.descriptionText}>Stock: {item?.stock} </Text>
       </View>
