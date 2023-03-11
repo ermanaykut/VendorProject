@@ -21,7 +21,9 @@ const getAsyncItem = async (
 ) => {
   await AsyncStorage.getItem(storageName)
     .then(res => JSON.parse(res))
-    .then(response => onSuccess(response))
+    .then(response => {
+      onSuccess(response);
+    })
     .catch(err => onError(err))
     .finally(onFinally);
 };

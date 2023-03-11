@@ -1,4 +1,4 @@
-import {Alert, FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {styles} from './style';
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,13 +6,15 @@ import BasketItem from './BasketItem';
 import {setBasket} from '../../store/slices/cart-slice';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {errorMessage} from '../../utils/functions/GlobalMessages';
-import {SheetProvider} from 'react-native-actions-sheet';
+
 import ActionSheet from 'react-native-actions-sheet';
-import {colors} from '../../constants/colors';
+
 import moment from 'moment';
+
 const CartScreen = () => {
   const cart = useSelector(state => state.cart);
   const [totalPrice, setTotalPrice] = useState(0);
+
   const arr = [...cart?.basket];
   const dispatch = useDispatch();
   const netInfo = useNetInfo();
@@ -43,19 +45,16 @@ const CartScreen = () => {
   const renderBasketItem = ({item}) => <BasketItem basket={item} />;
 
   const renderActionSheetFlatItem = ({item}) => {
+    let productSubPrice = 0;
+    productSubPrice = item?.amount * item?.item?.price;
     return (
-      <View
-        style={{
-          width: '95%',
-          height: 40,
-          padding: 5,
-          borderBottomColor: colors.aqua,
-          borderBottomWidth: 2,
-        }}>
-        <Text>{item?.item?.title}</Text>
+      <View style={styles.actionSheet}>
+        <Text>$ {item?.item?.title} </Text>
+        <Text>$ {productSubPrice} </Text>
       </View>
     );
   };
+
   return (
     <View style={styles.container}>
       <Text>Date: {moment().fromNow()}</Text>
@@ -81,36 +80,14 @@ const CartScreen = () => {
         initialSnapIndex={0}
         gestureEnabled={true}
         defaultOverlayOpacity={0.4}
-        containerStyle={{
-          height: 500,
-          width: '100%',
-          backgroundColor: 'transparent',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            width: '95%',
-            height: 400,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            padding: 10,
-          }}>
+        containerStyle={styles.actionSheetContainer}>
+        <View style={styles.actionSheetView}>
           <FlatList data={arr} renderItem={renderActionSheetFlatItem} />
         </View>
         <Pressable
           onPress={() => actionSheetRef.current.hide()}
-          style={{
-            width: '95%',
-            height: 40,
-            marginVertical: 10,
-            backgroundColor: 'white',
-            borderRadius: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text style={{color: colors.red}}>Cancel</Text>
+          style={styles.cancel}>
+          <Text style={styles.cancelText}>Cancel</Text>
         </Pressable>
       </ActionSheet>
     </View>

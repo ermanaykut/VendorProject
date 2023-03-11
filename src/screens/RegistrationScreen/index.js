@@ -61,19 +61,16 @@ const RegistrationScreen = ({navigation}) => {
 
   const onSuccess = response => {
     let arr = [];
+    response && arr.push(response);
     arr.push(inputs);
-    setAsyncItem('user', [...arr, ...response], navigateLogin);
+    setAsyncItem('user', arr, onLoginPress);
   };
 
-  const onLoginPress = () =>{
+  const onLoginPress = () => {
     setLoading(true);
     setTimeout(() => {
       navigation.navigate('LoginScreen');
     }, 1000);
-  };
-
-  const navigateLogin = () => {
-    navigation.navigate('LoginScreen');
   };
 
   const onError = err => {
@@ -167,9 +164,7 @@ const RegistrationScreen = ({navigation}) => {
 
               <Text style={styles.text3}>
                 Already have account?
-                <Text
-                  onPress={(onLoginPress)}
-                  style={styles.text4}>
+                <Text onPress={onLoginPress} style={styles.text4}>
                   Login
                 </Text>
               </Text>

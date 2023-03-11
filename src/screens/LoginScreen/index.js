@@ -26,18 +26,12 @@ import styles from './style';
 // import MaskInput from 'react-native-mask-input';
 
 const LoginScreen = ({navigation}) => {
-  const [inputs, setInputs] = useState({
-    email: '',
-    fullname: '',
-    phone: '',
-    password: '',
-  });
   const [mail, setMail] = useState('');
   const [error, setError] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,14 +42,13 @@ const LoginScreen = ({navigation}) => {
   const validate = () => {
     Keyboard.dismiss();
     let valid = true;
-    if (!inputs.email) {
+    if (!mail) {
       handleError('Please input email', 'email');
       valid = false;
     }
 
-    if (!inputs.password) {
+    if (!password) {
       valid = false;
-
       handleError('Please enter password', 'password');
     }
     if (valid) {
@@ -64,9 +57,9 @@ const LoginScreen = ({navigation}) => {
   };
 
   const onSuccess = response => {
-    const user = response?.find(x => x.email == inputs.email);
-    const userIndex = response?.findIndex(x => x.email == inputs.email);
-    if (inputs.password == user.password) {
+    const user = response?.find(x => x.email == mail);
+    const userIndex = response?.findIndex(x => x.email == mail);
+    if (password == user.password) {
       response[userIndex] = {...response[userIndex], loggedIn: true};
       setAsyncItem('user', response, () =>
         navigateTo('TabNavigation', {userDetails: user}),
@@ -85,13 +78,7 @@ const LoginScreen = ({navigation}) => {
 
   const login = () => {
     setLoading(true);
-    setTimeout(async () => {
-      getAsyncItem('user', onSuccess, onError, onFinally);
-    }, 2000);
-  };
-
-  const handleOnChange = (text, input) => {
-    setInputs(prevState => ({...prevState, [input]: text}));
+    getAsyncItem('user', onSuccess, onError, onFinally);
   };
 
   const handleError = (errorMessage, input) => {

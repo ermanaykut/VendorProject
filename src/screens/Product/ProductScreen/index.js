@@ -9,7 +9,7 @@ import productService from '../../../services/product-service';
 import styles from './style';
 
 export default function ProductScreen({route}) {
-  const {name = ''} = route.params ?? '';
+  const {name = ''} = route.params ?? ''; 
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);

@@ -10,7 +10,6 @@ import ProductScreen from '../screens/Product/ProductScreen';
 import ProductDetail from '../screens/Product/ProductDetail';
 import {colors} from '../constants/colors';
 import Icon from '../components/Icon';
-import { useNavigation } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +23,8 @@ const StackNavigation = () => {
     <Stack.Navigator
       screenOptions={{headerShown: false, headerBackTitleVisible: false}}>
       <Stack.Screen name="TabNavigation" component={TabNavigation} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
       {
         //Product Stack Start
       }
@@ -56,7 +57,7 @@ const StackNavigation = () => {
                   onPress={() => {
                     navigation.navigate('CartScreen');
                   }}>
-                  <Icon name="rocket1 : ant" size={25} />
+                  <Icon name="cart-arrow-right : matcom" size={28} />
                 </Pressable>
               );
             },
@@ -66,8 +67,6 @@ const StackNavigation = () => {
       {
         //Product Stack End
       }
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
     </Stack.Navigator>
   );
 };

@@ -4,19 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 
 import LoadingBar from '../../components/LoadingBar';
+import IconFunc from '../../components/Image';
+
 import categoryService from '../../services/category-service';
 
 import styles from './style';
-import InputP from '../../components/InputP';
-import IconFunc from '../../components/Image';
-import {TextInput} from 'react-native-paper';
-import Icon from '../../components/Icon';
-import globalStyle from '../../constants/style';
-// import FastImage from 'react-native-fast-image';
-// import InputP from '../../components/InputP';
-// import IconFunc from '../../components/Image';
-// import { TextInput } from 'react-native-paper';
-// import Icon from '../../components/Icon';
 
 export default function CategoryScreen() {
   const [categories, setCategories] = useState([]);
@@ -56,10 +48,10 @@ export default function CategoryScreen() {
     const onProductPress = () => {
       navigation.navigate('ProductScreen', {name: item.name});
     };
-    
+
     return (
-      <TouchableOpacity onPress={onProductPress} style={[styles.textButton, globalStyle.midShadow]}>
-        <Text>{item.name}</Text>
+      <TouchableOpacity onPress={onProductPress} style={styles.textButton}>
+        <Text style={styles.textStyle}>{item.name}</Text>
         <IconFunc item={item?.icon} />
       </TouchableOpacity>
     );

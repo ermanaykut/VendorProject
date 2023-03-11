@@ -107,7 +107,7 @@ export default function ProductDetail({route}) {
         <Text style={styles.descriptionText}>Price: {item?.price}$</Text>
         <Text style={styles.descriptionText}>
           Rating: {item?.rating}
-          <Icon name="star-half : Ionicons" size={15} color={colors.yellow} />
+          <Icon name="star-half : Ionicons" size={15} color={colors.orange} />
         </Text>
         <Text style={styles.descriptionText}>Stock: {item?.stock} </Text>
       </View>
@@ -115,7 +115,7 @@ export default function ProductDetail({route}) {
       <Text style={styles.descriptionText}>{item?.description}</Text>
       <View>
         <FlatList
-          data={[...products]?.filter(x => x?.id != item?.id)}
+          data={[...products].filter(product => product?.id != id)}
           renderItem={item => renderProducts(item)}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -129,6 +129,7 @@ export default function ProductDetail({route}) {
         index={activeIndex}
         images={item?.images}
         onSwipeDown={hideGallery}
+        enableImageZoom
       />
     </ScrollView>
   );
