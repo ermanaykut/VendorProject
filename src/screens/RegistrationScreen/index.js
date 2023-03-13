@@ -59,6 +59,9 @@ const RegistrationScreen = ({navigation}) => {
     }
   };
 
+    
+    // response && arr.push(response);
+    
   const onSuccess = response => {
     let arr = [];
     response && arr.push(response);
