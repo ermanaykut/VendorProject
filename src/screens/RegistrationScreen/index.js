@@ -67,10 +67,7 @@ const RegistrationScreen = ({navigation}) => {
   };
 
   const onLoginPress = () => {
-    setLoading(true);
-    setTimeout(() => {
-      navigation.navigate('LoginScreen');
-    }, 1000);
+    navigation.navigate('LoginScreen');
   };
 
   const onError = err => {
