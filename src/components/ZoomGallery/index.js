@@ -16,7 +16,7 @@ export default function ZoomGallery({
   onSwipeDown = () => {},
   outRenderIndicator = null,
 }) {
-  const renderIndicator = (activeIndex, itemCount) => {
+  const renderIndicator = (activeIndex, itemCount) => { //parametreler nasıl tanımlı?
     if (outRenderIndicator) return outRenderIndicator();
     return (
       <SafeAreaView style={styles.container}>

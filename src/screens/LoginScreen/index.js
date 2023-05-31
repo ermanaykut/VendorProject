@@ -15,7 +15,6 @@ import {TextInput} from 'react-native-paper';
 
 //Components
 import Icon from '../../components/Icon';
-import Input from '../../components/Input';
 import Loader from '../../components/Loader/LoadingCart';
 import Button from '../../components/Button';
 import InputP from '../../components/InputP';
@@ -189,17 +188,6 @@ const LoginScreen = ({navigation}) => {
                 />
               }
             />
-
-            {/* <Input
-              password
-              label="Password"
-              error={errors.password}
-              onFocus={() => {
-                handleError(null, 'password');
-              }}
-              onChangeText={text => handleOnChange(text, 'password')}
-              placeholder="Enter Your password"
-            /> */}
 
             <Button
               style={styles.buttonStyle}

@@ -14,7 +14,7 @@ export default function Product({item, products}) {
     products: products,
   };
   const onPressedItem = () => {
-    navigation.navigate('ProductDetail', obj);
+    navigation.navigate('ProductDetail', obj); //obj param mı?? product detail sayfasındaki route?.params ile mi gidiyor??
   };
 
   return (
