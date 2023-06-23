@@ -31,7 +31,8 @@ export default function BasketItem({basket}) {
         obj = {...obj, amount: Number(itemAmount) - 1};
         setItemAmount((Number(itemAmount) - 1).toString());
       }
-    } else {
+    } 
+    else {
       obj = {...obj, amount: Number(itemAmount) + 1};
       setItemAmount((Number(itemAmount) + 1).toString());
     }

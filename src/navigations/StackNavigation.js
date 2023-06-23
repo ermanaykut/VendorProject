@@ -22,9 +22,9 @@ const StackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false, headerBackTitleVisible: false}}>
+      <Stack.Screen name="TabNavigation" component={TabNavigation} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
-      <Stack.Screen name="TabNavigation" component={TabNavigation} />
       {
         //Product Stack Start
       }
